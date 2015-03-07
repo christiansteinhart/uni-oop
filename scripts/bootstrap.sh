@@ -2,7 +2,9 @@
 
 test -L /home/vagrant/code || ln -s /vagrant/code /home/vagrant/code && chown -h vagrant:vagrant /home/vagrant/code
 
-test -L /home/vagrant/.bashrc || ln -s /vagrant/scripts/.bashrc /home/vagrant/.bashrc && chown -h vagrant:vagrant /home/vagrant/.bashrc
+test -L /home/vagrant/.bash_vagrant || ln -s /vagrant/scripts/.bash_vagrant /home/vagrant/.bash_vagrant && chown -h vagrant:vagrant /home/vagrant/.bash_vagrant
+
+test 0 -eq $(cat /home/vagrant/.bashrc | grep bash_vagrant | wc -l) && echo ". ~/.bash_vagrant" >> /home/vagrant/.bashrc
 
 apt-get update
 
